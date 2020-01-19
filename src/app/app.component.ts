@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {ChatService} from "./chat.service";
+import {Message} from "./message.model";
+import {Component} from "@angular/core";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'sent-chat';
+  newMessage: string;
+  messageList: string[] = [];
+
+  constructor(private chatService: ChatService) {
+  }
+
+  sendMessage() {
+    this.chatService.sendMessage(this.newMessage);
+    this.newMessage = '';
+  }
+
+  ngOnInit() {
+    this.chatService.getMessages().subscribe(m => console.dir(m));
+  }
 }
