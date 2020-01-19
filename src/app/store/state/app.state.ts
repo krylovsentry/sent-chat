@@ -3,8 +3,8 @@ import {initialUserState, UserState} from './user.state';
 
 
 export interface AppState {
-  chat: ChatState,
-  user: UserState
+  chat: ChatState;
+  user: UserState;
 }
 
 const initialAppState: AppState = {

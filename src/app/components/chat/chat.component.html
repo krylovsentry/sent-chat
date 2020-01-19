@@ -1,7 +1,11 @@
-<div *ngFor="let message of messages$ | async">
-  {{message.message}}
-  {{message.sentimentLevel | emojiPipe}}
+<div>
+  <div *ngFor="let message of messages$ | async">
+    <div class="message">
+      <div class="message__text">{{message.message}}</div>
+      <div class="message__emoji">{{message.sentimentLevel | emojiPipe}}</div>
+    </div>
+    </div>
+  <input [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && sendMessage()"/>
+  <button (click)="sendMessage()">Send Message</button>
 </div>
 
-<input [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && sendMessage()"/>
-<button (click)="sendMessage()">Send Message</button>

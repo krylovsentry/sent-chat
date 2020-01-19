@@ -1,1 +1,17 @@
-<app-chat></app-chat>
+
+
+<div *ngIf="user$ | async as user">
+
+  <button *ngIf="!user.uid"
+          (click)="googleLogin()">
+
+    Sign In with Google
+  </button>
+
+  <div *ngIf="user.uid">
+    <h1>Hello, {{ user.displayName }}</h1>
+    <img src="{{userImage}}">
+    <app-chat></app-chat>
+  </div>
+
+</div>

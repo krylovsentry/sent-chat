@@ -1,7 +1,9 @@
 export interface UserState {
-  name: string;
+  uid: string;
+  displayName: string;
 }
 
 export const initialUserState: UserState = {
-  name: '',
+  uid: '',
+  displayName: '',
 };

@@ -10,7 +10,11 @@ import {environment} from '../environments/environment';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {StoreModule} from '@ngrx/store';
 import {appReducers} from './store/reducers/app.reducers';
-import {EmojiPipe} from './utils/emoji.pipe';
+import {EmojiPipe} from './pipes/emoji.pipe';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {EffectsModule} from '@ngrx/effects';
+import {UserEffects} from './store/effects/user.effects';
 
 const localDebugUrl = 'http://localhost:8080';
 
@@ -27,6 +31,11 @@ const config: SocketIoConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    EffectsModule.forRoot([
+      UserEffects
+    ]),
     FormsModule,
     SocketIoModule.forRoot(config),
     StoreModule.forRoot(appReducers),
